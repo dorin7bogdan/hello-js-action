@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 2370:
@@ -9792,21 +9792,25 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(5804);
 const github = __nccwpck_require__(9693);
 
-try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
-} catch (error) {
-  core.setFailed(error.message);
+async function run() {
+  try {
+    // `who-to-greet` input defined in action metadata file
+    const nameToGreet = core.getInput('who-to-greet');
+    console.log(`Hello ${nameToGreet}!`);
+    const time = (new Date()).toTimeString();
+    core.setOutput("time", time);
+    // Get the JSON webhook payload for the event that triggered the workflow
+    const payload = JSON.stringify(github.context.payload, undefined, 2)
+    console.log(`The event payload: ${payload}`);
+  } catch (error) {
+    core.setFailed(error.message);
+  }
 }
 
+run()
 })();
 
 module.exports = __webpack_exports__;
 /******/ })()
 ;
+//# sourceMappingURL=index.js.map
