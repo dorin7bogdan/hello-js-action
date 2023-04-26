@@ -7,9 +7,9 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 //const childProc = require('node:child_process');
 const { spawn } = require('node:child_process');
-const process = require("process");
+//const process = require("process");
 //const fetch = require("node:fetch");
-//const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const { pipeline } = require("node:stream");
 const streamPipe = promisify(pipeline);
 

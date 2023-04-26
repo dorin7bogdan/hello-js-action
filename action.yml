@@ -11,5 +11,5 @@ outputs:
   exit-code: # id of output
     description: 'The ExitCode from FTToolsLauncher'
 runs:
-  using: 'node20'
+  using: 'node16'
   main: 'dist/index.js'
