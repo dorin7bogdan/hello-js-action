@@ -9881,32 +9881,30 @@ const timestamp = Date.now();
 const propsFilename = `Props${timestamp}.txt`;
 const propsFullPathFilename = path.join(workDir, `Props${timestamp}.txt`);
 const resFilename = `Results${timestamp}.xml`;
+const launcherFullPathFilename = path.join(workDir, LAUNCHER);
 
 console.log(`__dirname == ${__dirname}`);
 //process.chdir(workDir);
 //console.log(`__dirname == ${__dirname}`);
-const tests = []
-if (strTests)
-  tests = strTests.split("\n");
-for (let idx = 0; idx < tests.length; idx++) {
-  console.log(`Test${idx} = ${tests[idx]}`);
-  let test = path.replace(/\\/g, "\\\\");
-  console.log(test);
+if (strTests) {
+  //tests.push("D:\\Work\\UFTTests\\Success");
+  //tests.push("D:\\Work\\UFTTests\\QuickFail");
+  const tests = strTests.split("\n");
+  for (let idx = 0; idx < tests.length; idx++) {
+    //TODO make sure each test contains an absolute path using path.isAbsolute
+    console.log(`Test${idx} = ${tests[idx]}`);
+    let test = path.replace(/\\/g, "\\\\");
+    console.log(test);
+  }
+  main(tests);
+} else {
+  core.setFailed("No tests provided.");
 }
 
-//TODO make sure each test contains an absolute path using path.isAbsolute
-
-//tests.push("D:\\\\Work\\\\UFTTests\\\\Success");
-//tests.push("D:\\\\Work\\\\UFTTests\\\\QuickFail");
-
-const launcherFullPathFilename = path.join(workDir, LAUNCHER);
-
-main();
-
-async function main() {
+async function main(tests) {
   let ok = await checkLauncher();
   if (ok) {
-    ok = await createPropsFile();
+    ok = await createPropsFile(tests);
     if (ok) {
       await run();
     }
@@ -9940,7 +9938,7 @@ async function downloadLauncher() {
   }
 }
 
-async function createPropsFile() {
+async function createPropsFile(tests) {
   try {
     let str = "runType=FileSystem\r\n";
     str += `resultsFilename=${resFilename}\r\n`;
