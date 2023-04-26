@@ -10110,7 +10110,7 @@ async function createPropsFile(tests) {
     let str = "runType=FileSystem\r\n";
     str += `resultsFilename=${resFilename}\r\n`;
     for (let idx = 0; idx < tests.length; idx++) {
-      let test = path.replace(/\\/g, "\\\\");
+      let test = tests[idx].replace(/\\/g, "\\\\");
       str += `Test${idx+1}=${test}\r\n`;
     }
     await writeFile(propsFullPathFilename, str);
