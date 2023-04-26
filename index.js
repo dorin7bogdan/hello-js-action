@@ -143,7 +143,7 @@ async function run() {
     console.log(`${workDir}>${LAUNCHER} -paramfile ${propsFilename}`);
     const exitCode = await runTests(LAUNCHER, ["-paramfile", propsFilename], workDir);
     console.log(`Exit Code = ${exitCode}`);
-    core.setOutput("exitCode", exitCode);
+    core.setOutput("exit-code", exitCode);
   } catch(error) {
     console.log("ERROR: ", JSON.stringify(error));
     core.setFailed(error.code);
