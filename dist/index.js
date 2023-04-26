@@ -9892,8 +9892,8 @@ if (strTests) {
   const tests = strTests.split("\n");
   for (let idx = 0; idx < tests.length; idx++) {
     //TODO make sure each test contains an absolute path using path.isAbsolute
-    console.log(`Test${idx} = ${tests[idx]}`);
-    let test = path.replace(/\\/g, "\\\\");
+    let test = tests[idx].replace(/\\/g, "\\\\");
+    console.log(`Test${idx} = ${test}`);
     console.log(test);
   }
   main(tests);
