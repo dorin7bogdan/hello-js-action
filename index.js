@@ -25,7 +25,7 @@ const LAUNCHER_URL = "https://github.com/MicroFocus/ADM-FT-ToolsLauncher/release
 */
 
 //const workDir = "D:\\Work\\Temp\\UFT";
-const strTests = core.getMultilineInput('tests');
+const strTests = core.getMultilineInput('tests').toString();
 console.log(`tests = ${strTests}`);
 const workDir = core.getInput("work-dir") || __dirname;
 console.log(`work-dir = ${workDir}`);
@@ -36,11 +36,11 @@ const propsFullPathFilename = path.join(workDir, `Props${timestamp}.txt`);
 const resFilename = `Results${timestamp}.xml`;
 
 console.log(`__dirname == ${__dirname}`);
-process.chdir(workDir);
-console.log(`__dirname == ${__dirname}`);
+//process.chdir(workDir);
+//console.log(`__dirname == ${__dirname}`);
 const tests = []
-if (strTests && strTests.length > 0)
-  strTests.split("\n");
+if (strTests)
+  tests = strTests.split("\n");
 for (let idx = 0; idx < tests.length; idx++) {
   console.log(`Test${idx} = ${tests[idx]}`);
   let test = path.replace(/\\/g, "\\\\");
