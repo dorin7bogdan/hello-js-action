@@ -107,7 +107,7 @@ async function createPropsFile(tests) {
   }
 }
 
-function runTests(app, args, dir) {
+async function runTests(app, args, dir) {
   let p = spawn(app, args, {cwd: dir});
   p.stdout.on("data", (x) => {
     //process.stdout.write(x.toString());
